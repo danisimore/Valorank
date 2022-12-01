@@ -41,6 +41,7 @@ LOCAL_APPS = [
     'users.apps.UsersConfig',
     'store',
     'support_service',
+    'articles',
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY + LOCAL_APPS
@@ -61,7 +62,7 @@ ROOT_URLCONF = 'valorank_config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
