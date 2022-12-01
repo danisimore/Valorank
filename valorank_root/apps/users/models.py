@@ -62,9 +62,10 @@ class User(AbstractBaseUser, PermissionsMixin):
     last_name = models.CharField(max_length=150, blank=True)
     phone = models.CharField(max_length=150, blank=True)
     discord = models.CharField(max_length=150, blank=True)
-    role = models.ForeignKey(Position, on_delete=models.PROTECT, blank=True, null=True)
-    avatar = models.ImageField(upload_to='avatars/%Y/%m/%d')
-
+    avatar = models.ImageField(upload_to='avatars/%Y/%m/%d', blank=True)
+    is_employee = models.BooleanField(default=False)
+    position = models.ForeignKey(Position, on_delete=models.PROTECT, blank=True, null=True)
+    mailbox = models.CharField(max_length=128, blank=True, null=True, verbose_name='Токен сотрудника')
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
 
