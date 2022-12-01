@@ -28,6 +28,7 @@ class Product(models.Model):
     base_rank = models.ForeignKey(BaseRank, on_delete=models.PROTECT)
     desired_rank = models.ForeignKey(DesiredRank, on_delete=models.PROTECT)
     price = models.IntegerField(verbose_name='Цена')
+    image = models.ImageField(upload_to='product_images', verbose_name='Изображение', null=True)
 
     def __str__(self):
         return self.title
