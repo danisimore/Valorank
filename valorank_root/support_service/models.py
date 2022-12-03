@@ -1,11 +1,16 @@
 from django.db import models
-
+from users.models import EmployeeMailbox
 
 class Request(models.Model):
     email = models.EmailField()
     problem_description = models.TextField(verbose_name='Описание проблемы')
     creation_time = models.DateTimeField(auto_now_add=True, verbose_name='Время создания')
-    mailbox = models.CharField(max_length=128, blank=True, null=True, verbose_name='Токен специалиста поддержки')
+    mailbox = models.ForeignKey(
+        EmployeeMailbox,
+        on_delete=models.PROTECT,
+        null=True, blank=True,
+        verbose_name='Обслуживающий специалист'
+    )
 
     CHOICES = (
         ('W', 'Waiting'),

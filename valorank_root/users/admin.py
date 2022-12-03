@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.utils.safestring import mark_safe
 
-from .models import User, Position
+from .models import User, Position, EmployeeMailbox
 
 
 class UserAdmin(admin.ModelAdmin):
@@ -34,3 +34,4 @@ class UserAdmin(admin.ModelAdmin):
 
 admin.site.register(User, UserAdmin)
 admin.site.register(Position)
+admin.site.register(EmployeeMailbox)

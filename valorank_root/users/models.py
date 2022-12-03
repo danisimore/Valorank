@@ -54,6 +54,16 @@ class Position(models.Model):
         verbose_name_plural = 'Должности'  # Roles
 
 
+class EmployeeMailbox(models.Model):
+    title = models.CharField(max_length=128, verbose_name='Имя почтового ящика сотрудника')
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = 'Имя почтового ящика сотрудника'
+        verbose_name_plural = 'Имена почтовых ящиков сотрудников'
+
 class User(AbstractBaseUser, PermissionsMixin):
     username_validator = UnicodeUsernameValidator()
 
@@ -65,7 +75,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     avatar = models.ImageField(upload_to='avatars/%Y/%m/%d', blank=True)
     is_employee = models.BooleanField(default=False)
     position = models.ForeignKey(Position, on_delete=models.PROTECT, blank=True, null=True)
-    mailbox = models.CharField(max_length=128, blank=True, null=True, verbose_name='Токен сотрудника')
+    mailbox = models.ForeignKey(EmployeeMailbox, on_delete=models.CASCADE, null=True, blank=True)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
 
