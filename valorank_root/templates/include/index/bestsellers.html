@@ -1,0 +1,26 @@
+<section class="product section-padding">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-12">
+                <h2 class="text-center mb-lg-5 mb-4">Покупают чаще всего</h2>
+            </div>
+            {% for product in object_list %}
+            <div class="col-lg-4 col-md-6 col-12">
+                <div class="product-thumb">
+                    <div class="product-image-wrap">
+                        <img src="{{ product.image.url }}"
+                             class="img-fluid product-image" alt="">
+                    </div>
+
+                    <div class="product-info d-flex flex-wrap align-items-center">
+                        <h4 class="mb-0">{{ product.title }}</h4>
+
+                        <span class="price-tag bg-white shadow-lg ms-4"><small>₽</small>{{ product.price }}</span>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>

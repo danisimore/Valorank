@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    {% block meta %}
+    {% include 'include/base/meta.html' %}
+    {% endblock %}
+
+    <title>{% block title %} Valorank {% endblock %}</title>
+
+    <!-- CSS FILES -->
+    {% block css_files %}
+    {% include 'include/base/css_files.html' %}
+    {% endblock %}
+
+</head>
+<body>
+
+{% block navbar %}
+{% include 'include/base/navbar.html' %}
+{% endblock %}
+
+
+{% block content %}
+{% endblock %}
+
+
+{% block footer %}
+{% include 'include/base/footer.html' %}
+{% endblock %}
+
+
+<!-- JAVASCRIPT FILES -->
+{% block js_files %}
+{% include 'include/base/js_files.html' %}
+{% endblock %}
+
+</body>
+</html>

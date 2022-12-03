@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<main>
+{% include 'include/index/video_header.html' %}
+
+{% include 'include/index/bestsellers.html' %}
+
+<section class="BgImage"></section>
+
+{% include 'include/index/last_articles.html' %}
+
+</main>
+{% endblock %}

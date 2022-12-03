@@ -1,0 +1,33 @@
+<section class="articles section-padding">
+    <div class="container">
+        <div class="row">
+
+            <h2 class="text-center mb-lg-5 mb-4">Обновления & Руководства</h2>
+            {% for article in articles %}
+
+            {% if forloop.counter == 1 or forloop.counter == 2 %}
+            <div class="col-lg-6 col-md-6 col-12">
+                <div class="articles-thumb mb-4">
+            {% else %}
+            <div class="col-lg-4 col-md-4 col-12">
+                <div class="articles-thumb mb-lg-0 mb-lg-4 mb-2">
+            {% endif %}
+
+                    <a href="news-detail.html">
+                        <img src="{{ article.image.url }}"
+                        class="img-fluid articles-image" alt="">
+                    </a>
+
+                    <div class="articles-text-info articles-text-info-large">
+                        <span class="category-tag bg-danger">{{ article.category }}</span>
+                        <h5 class="article-title mt-2">
+                            <a href="news-detail.html" class="article-title-link">{{ article.title }}</a>
+                        </h5>
+                    </div>
+                 </div>
+              </div>
+            {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>

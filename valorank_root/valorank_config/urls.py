@@ -15,11 +15,14 @@ Including another URLconf
 """
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from . import settings
+from main.views import IndexView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api-auth/', include('rest_framework.urls')),
+    path('', IndexView.as_view())
 ]
 
 if settings.DEBUG:
