@@ -1,0 +1,26 @@
+{% load static %}
+
+<section class="about section-padding">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-12">
+                <h2 class="mb-5">Наши лучшие бустеры</h2>
+            </div>
+
+            {% for user in object_list %}
+            <div class="col-lg-4 col-12">
+                <div class="boosters-thumb">
+                    <img src="{{ user.avatar.url }}"
+                         class="img-fluid boosters-image" alt="">
+
+                    <div class="boosters-info">
+                        <h4 class="mt-3 mb-0">{{ user.mailbox }}</h4>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+</section>

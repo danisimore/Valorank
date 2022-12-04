@@ -1,10 +1,11 @@
-from django.shortcuts import render
+from django.db.models import Q
 from django.views.generic import ListView
 
 from rest_framework.generics import ListAPIView
 
 from store.models import Product
 from articles.models import Article
+from users.models import User
 from .serializers import MainPageProductsSerializer, MainPageArticlesSerializer
 
 ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
@@ -18,6 +19,7 @@ class HomePageProductsView(ListAPIView):
 
     def get_queryset(self):
         products = bestsellers
+
         return products
 
 
@@ -26,6 +28,7 @@ class HomePageArticles(ListAPIView):
 
     def get_queryset(self):
         articles = last_five_articles
+
         return articles
 
 
@@ -37,5 +40,15 @@ class IndexView(ListView):
         context = super().get_context_data(**kwargs)
         context['articles'] = last_five_articles
         context['object_list'] = bestsellers
+
+        return context
+
+class AboutUsView(ListView):
+    template_name = 'about.html'
+    model = User
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['object_list'] = User.objects.filter(Q(pk=1)|Q(pk=2)|Q(pk=3))
 
         return context
