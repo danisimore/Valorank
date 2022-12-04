@@ -1,9 +1,20 @@
+from django import forms
 from django.contrib import admin
 from django.utils.safestring import mark_safe
+
+from ckeditor_uploader.widgets import CKEditorUploadingWidget
 
 from .models import Article, ArticleCategory
 
 
+class ArticleAdminForm(forms.ModelForm):
+    content = forms.CharField(label='Текст статьи', widget=CKEditorUploadingWidget())
+    class Meta:
+        model = Article
+        fields = '__all__'
+
+
+@admin.register(Article)
 class ArticleAdmin(admin.ModelAdmin):
     list_display = (
         'id',
@@ -12,6 +23,7 @@ class ArticleAdmin(admin.ModelAdmin):
         'creation_date',
     )
     list_display_links = ('id', 'title')
+    form = ArticleAdminForm
     search_fields = ('id', 'title')
     list_filter = ('id', 'title', 'creation_date')
     list_per_page = 10
@@ -26,5 +38,4 @@ class ArticleAdmin(admin.ModelAdmin):
     get_image.short_description = 'Изображение'
 
 
-admin.site.register(Article, ArticleAdmin)
 admin.site.register(ArticleCategory)
