@@ -215,3 +215,4 @@ ENV/
 /valorank_root/static/admin/
 /valorank_root/static/ckeditor/
 /valorank_root/static/admin/
+/valorank_root/static/rest_framework/
