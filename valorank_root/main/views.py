@@ -1,7 +1,6 @@
 from django.shortcuts import render
 from django.views.generic import ListView
 
-from rest_framework.response import Response
 from rest_framework.generics import ListAPIView
 
 from store.models import Product

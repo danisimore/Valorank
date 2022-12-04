@@ -1,8 +1,7 @@
 from rest_framework import serializers
+
 from store.models import Product
 from articles.models import Article
-
-''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
 class MainPageProductsSerializer(serializers.ModelSerializer):
 
@@ -15,5 +14,5 @@ class MainPageArticlesSerializer(serializers.ModelSerializer):
     category = serializers.SlugRelatedField(slug_field='title', read_only=True)
 
     class Meta:
-        model = Article
+        model = Product
         fields = ('pk', 'title', 'category')

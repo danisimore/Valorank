@@ -212,3 +212,6 @@ ENV/
 /site
 
 # End of https://www.gitignore.io/api/macos,linux,django,python,pycharm
+/valorank_root/static/admin/
+/valorank_root/static/ckeditor/
+/valorank_root/static/admin/

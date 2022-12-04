@@ -1,7 +1,6 @@
 from django.urls import path
-from .views import IndexView, HomePageProductsView, HomePageArticles
 
-''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+from .views import IndexView, HomePageProductsView, HomePageArticles
 
 urlpatterns = [
     path('', IndexView.as_view()),
