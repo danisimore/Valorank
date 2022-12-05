@@ -1,0 +1,14 @@
+<div class="product-price">
+
+    {% for product in products_list %}
+
+    {% if product.discount %}
+    <p class="last-price">Старая цена: <span>{{ product.old_price }} ₽</span></p>
+    <p class="new-price">Новая цена: <span>{{ product.current_price }} ₽</span></p>
+    {% else %}
+    <p class="new-price">Цена: <span>{{ product.current_price }} ₽</span></p>
+    {% endif %}
+
+    {% endfor %}
+
+</div>

@@ -1,0 +1,14 @@
+<div class="product-detail">
+    <ul>
+        {% for product in products_list %}
+        <li>Время выполнения: <span>{{ product.execution_time }}</span></li>
+        <li>Возврат: <span>Полный возврат средств</span></li>
+        <div class="purchase-btn">
+            <a href="#">
+                <button style="float: right" type="button" class="custom-btn btn btn-danger">Купить
+                </button>
+            </a>
+        </div>
+        {% endfor %}
+    </ul>
+</div>

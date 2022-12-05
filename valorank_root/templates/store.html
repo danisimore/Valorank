@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block add_css %}
+<link href="{% static 'css/store.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block home_link %} <a class="nav-link" href="{% url 'home' %}" xmlns="http://www.w3.org/1999/html">Главная</a> {% endblock %}
+{% block store_link %} <a class="nav-link active" href="{% url 'store' %}">Магазин</a> {% endblock %}
+
+
+{% block content %}
+<div class="card-wrapper">
+    <div class="card">
+
+        <!-- card left -->
+        {% include 'include/store/card_image.html' %}
+
+        <!-- card right -->
+        <div class="product-content">
+            <h2 class="product-title">Магазин</h2>
+
+            {% include 'include/store/form.html' %}
+
+            {% include 'include/store/product_image.html' %}
+
+            {% include 'include/store/product_price.html' %}
+
+            {% include 'include/store/product_detail.html' %}
+
+        </div>
+    </div>
+</div>
+{% endblock %}

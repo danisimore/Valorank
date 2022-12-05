@@ -1,0 +1,5 @@
+{% for product in products_list %}
+<h4>{{ product.title }}</h4>
+<img src="{{ product.image.url }}"
+     alt="" style="width: 300px">
+{% endfor %}
