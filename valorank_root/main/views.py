@@ -32,7 +32,7 @@ class HomePageArticles(ListAPIView):
         return articles
 
 
-class IndexView(ListView):
+class IndexListView(ListView):
     template_name = 'index.html'
     model = Product
 
@@ -43,7 +43,7 @@ class IndexView(ListView):
 
         return context
 
-class AboutUsView(ListView):
+class AboutUsListView(ListView):
     template_name = 'about.html'
     model = User
 
