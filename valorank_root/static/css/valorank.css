@@ -165,6 +165,7 @@ strong {
   background: var(--white-color);
   padding-top: 20px;
   padding-bottom: 20px;
+  z-index: 100;
 }
 
 .navbar-brand {
@@ -869,4 +870,3 @@ strong {
     height: 50px;
   }
 }
-
