@@ -14,7 +14,7 @@ bestsellers = Product.objects.filter(is_bestseller=True)[:3]
 last_five_articles = Article.objects.all().order_by('-pk')[:5]
 
 
-class HomePageProductsView(ListAPIView):
+class HomePageProductsAPIView(ListAPIView):
     serializer_class = MainPageProductsSerializer
 
     def get_queryset(self):
@@ -23,7 +23,7 @@ class HomePageProductsView(ListAPIView):
         return products
 
 
-class HomePageArticles(ListAPIView):
+class HomePageArticlesAPIView(ListAPIView):
     serializer_class = MainPageArticlesSerializer
 
     def get_queryset(self):

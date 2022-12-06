@@ -14,5 +14,5 @@ class MainPageArticlesSerializer(serializers.ModelSerializer):
     category = serializers.SlugRelatedField(slug_field='title', read_only=True)
 
     class Meta:
-        model = Product
+        model = Article
         fields = ('pk', 'title', 'category')
