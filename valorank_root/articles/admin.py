@@ -37,5 +37,6 @@ class ArticleAdmin(admin.ModelAdmin):
 
     get_image.short_description = 'Изображение'
 
-
-admin.site.register(ArticleCategory)
+@admin.register(ArticleCategory)
+class ArticleCategoryAdmin(admin.ModelAdmin):
+    list_display = ('id', 'title')

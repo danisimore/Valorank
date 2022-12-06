@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block home_link %} <a class="nav-link" href="{% url 'home' %}"
+                         xmlns="http://www.w3.org/1999/html">Главная</a> {% endblock %}
+{% block articles_link %} <a class="nav-link active" href="{% url 'articles' %}">Статьи</a> {% endblock %}
+
+
+{% block content %}
+<main>
+
+{% include 'include/articles/header.html' %}
+
+{% include 'include/articles/updates.html' %}
+
+{% include 'include/articles/articles_and_info.html' %}
+
+</main>
+{% endblock %}

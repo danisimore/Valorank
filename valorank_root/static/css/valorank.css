@@ -283,7 +283,7 @@ strong {
   z-index: 2;
 }
 
-.site-news-detail-header {
+.site-articles-detail-header {
   background: transparent;
   text-align: left;
    padding-top: 6rem;
@@ -298,8 +298,8 @@ strong {
   background-image: url('../images/header/luisa-brimble-aFzg83dvnAI-unsplash.jpg');
 }
 
-.site-news-header {
-  background-image: url('../images/header/priscilla-du-preez-W3SEyZODn8U-unsplash.jpg');
+.site-articles-header {
+  background-image: url('../images/news-header.jpg');
 }
 
 .site-contact-header {

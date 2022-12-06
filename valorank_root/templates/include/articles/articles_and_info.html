@@ -1,0 +1,32 @@
+<section class="articles section-padding">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-12">
+                <h2 class="mb-lg-5 mb-4">Статьи & Полезная информация</h2>
+            </div>
+
+            {% for article in information_and_articles %}
+            <div class="col-lg-4 col-md-6 col-12">
+                <div class="articles-thumb mb-4">
+                    <a href="news-detail.html">
+                        <img src="{{ article.image.url }}" class="img-fluid articles-image"
+                             alt="">
+                    </a>
+
+                    <div class="articles-text-info">
+                        <span class="category-tag me-3 bg-info">{{ article.category }}</span>
+
+                        <strong>{{ article.creation_date }}</strong>
+
+                        <h5 class="article-title mt-2">
+                            <a href="news-detail.html" class="article-title-link">{{ article.title }}</a>
+                        </h5>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+</section>

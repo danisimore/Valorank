@@ -31,7 +31,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <a class="navbar-brand" href="index.html">
+        <a class="navbar-brand" href="{% url 'home' %}">
             Valorank
         </a>
 
@@ -51,7 +51,7 @@
                 </li>
 
                 <li class="nav-item">
-                    {% block articles_link %} <a class="nav-link" href="news.html">Статьи</a> {% endblock %}
+                    {% block articles_link %} <a class="nav-link" href="{% url 'articles' %}">Статьи</a> {% endblock %}
                 </li>
 
                 <li class="nav-item">

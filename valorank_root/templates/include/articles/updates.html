@@ -1,0 +1,25 @@
+<section class="articles section-padding bg-white">
+    <div class="container">
+        <div class="row">
+
+            <h2 class="mb-lg-5 mb-4">Наши обновления</h2>
+            {% for article_update in updates %}
+            <div class="col-lg-6 col-md-6 col-12">
+                <div class="articles-thumb mb-4">
+                    <a href="news-detail.html">
+                        <img src="{{ article_update.image.url }}" class="img-fluid articles-image" alt="">
+                    </a>
+
+                    <div class="articles-text-info articles-text-info-large">
+                        <span class="category-tag bg-danger">{{ article_update.category }}</span>
+
+                        <h5 class="article-title mt-2">
+                            <a href="news-detail.html" class="article-title-link">{{ article_update.title }}</a>
+                        </h5>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
