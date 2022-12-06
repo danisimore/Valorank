@@ -1,0 +1,32 @@
+<section class="articles-detail section-padding pt-0">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-lg-12 col-12">
+                {% for article_data in article %}
+
+                <div class="col-lg-10 col-10 mx-auto mt-5">
+
+                    <h4 class="mb-3">{{ article_data.title }}</h4>
+
+                    <p>{{ article_data.content|safe }}</p>
+
+                    {% if article_data.video %}
+                    <div class="ratio ratio-16x9 my-5">
+                        <iframe width="560" height="315" src="{{ article_data.video }}"
+                                title="YouTube video player" frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen></iframe>
+                    </div>
+                    {% else %}
+                    <div class="ratio ratio-16x9 my-5">
+                        <img src="{{ article_data.image.url }}">
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>

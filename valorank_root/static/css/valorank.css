@@ -453,7 +453,7 @@ strong {
 .product,
 .about,
 .news,
-.related-news,
+.other-articles,
 .newsletter,
 .comments {
   background: var(--section-bg-color);
@@ -522,7 +522,7 @@ strong {
   transition: all 0.3s ease-out;
 }
 
-.related-news .articles-text-info {
+.other-articles .articles-text-info {
   background: var(--white-color);
 }
 

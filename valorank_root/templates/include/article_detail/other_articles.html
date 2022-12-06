@@ -1,15 +1,12 @@
-<section class="articles section-padding">
+<section class="other-articles section-padding bg-white">
     <div class="container">
         <div class="row">
 
-            <div class="col-12">
-                <h2 class="mb-lg-5 mb-4">Статьи & Полезная информация</h2>
-            </div>
-
-            {% for article in information_and_articles %}
+            <h2 class="text-center mb-lg-5 mb-4">Другие статьи</h2>
+            {% for article in other_articles %}
             <div class="col-lg-4 col-md-6 col-12">
                 <div class="articles-thumb mb-4">
-                    <a href="articles/detail/{{ article.pk }}">
+                    <a href="{{ article.pk }}">
                         <img src="{{ article.image.url }}" class="img-fluid articles-image"
                              alt="">
                     </a>
@@ -20,13 +17,12 @@
                         <strong>{{ article.creation_date }}</strong>
 
                         <h5 class="article-title mt-2">
-                            <a href="articles/detail/{{ article.pk }}" class="article-title-link">{{ article.title }}</a>
+                            <a href="{{ article.pk }}" class="article-title-link">{{ article.title }}</a>
                         </h5>
                     </div>
                 </div>
             </div>
             {% endfor %}
-
         </div>
     </div>
 </section>
