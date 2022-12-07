@@ -1,0 +1,39 @@
+<section class="support section-padding">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-12">
+                <h2 class="mb-4">Заполни форму ниже</h2>
+            </div>
+
+            <div class="col-lg-6 col-12">
+                <form class="custom-form support-form row" action="#" method="post" role="form">
+
+
+                    <div class="col-12">
+                        <label class="form-label">Ваш Email</label>
+                        {% csrf_token %}
+                        {{ form.email }}
+
+
+                        <label class="form-label">Опишите вашу проблему</label>
+                        {{ form.problem_description }}
+
+                    </div>
+
+                    <div class="col-lg-5 col-12 ms-auto">
+                        <button type="submit" class="form-control">Отправить</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="col-lg-4 col-12 mx-auto mt-lg-5 mt-4">
+
+                <h5>Служба поддержки работает круглосуточно</h5>
+
+            </div>
+
+
+        </div>
+    </div>
+</section>

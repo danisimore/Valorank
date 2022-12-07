@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container" id="tab-3a42" role="tabpanel"
+     aria-labelledby="link-tab-3a42" style="padding-top: 118px; padding-bottom: 119px">
+    <div class="u-container-layout u-container-layout-3">
+        <div class="u-form u-form-1">
+            <div class="u-form u-form-3">
+
+                {% if not error %}
+                <h2>Ваша заявка успешно отправлена</h2>
+                <p>Скоро с вами свяжется наш специалист службы поддержки. Вам придет письмо на указанную электронную
+                    почту с ответом. Ни в коем случае не сообщайте данные от своего аккаунта!</p>
+                <a href="http://127.0.0.1:8000/">Вернуться на главную</a>
+                {% else %}
+                <h2>Форма была заполнена некорректно!</h2>
+                <a href="{% url 'support_service' %}">Пожалуйста, попробуйте еще раз.</a>
+                {% endif %}
+            </div>
+
+            <br>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
