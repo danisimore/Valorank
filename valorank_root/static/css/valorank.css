@@ -690,6 +690,11 @@ strong {
   height: 500px;
 }
 
+@media (min-width:320px) and (max-width:500px) {
+    .BgImage {
+        display: none;
+    }
+}
 
 /*---------------------------------------
   FOOTER              
