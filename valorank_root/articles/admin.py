@@ -39,4 +39,5 @@ class ArticleAdmin(admin.ModelAdmin):
 
 @admin.register(ArticleCategory)
 class ArticleCategoryAdmin(admin.ModelAdmin):
-    list_display = ('id', 'title')
+    list_display = ('id', 'title', 'css')
+    list_editable = ('css',)

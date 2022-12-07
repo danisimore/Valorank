@@ -4,6 +4,7 @@ from django.db import models
 
 class ArticleCategory(models.Model):
     title = models.CharField(max_length=128, verbose_name='Название')
+    css = models.CharField(max_length=128, verbose_name='CSS-класс', default='bg-danger')
 
     def __str__(self):
         return self.title

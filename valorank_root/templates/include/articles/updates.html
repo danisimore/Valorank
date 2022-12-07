@@ -11,7 +11,7 @@
                     </a>
 
                     <div class="articles-text-info articles-text-info-large">
-                        <span class="category-tag bg-danger">{{ article_update.category }}</span>
+                        <span class="category-tag {{ article_update.category.css }}">{{ article_update.category }}</span>
 
                         <h5 class="article-title mt-2">
                             <a href="detail/{{ article_update.pk }}" class="article-title-link">{{ article_update.title }}</a>
