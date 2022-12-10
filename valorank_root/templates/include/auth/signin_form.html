@@ -1,0 +1,13 @@
+<div class="form-container sign-in-container">
+    <form action="{% url 'signin' %}" method="POST">
+        <h1 style="padding-bottom: 40px">Вход</h1>
+        {% csrf_token %}
+
+        <div class="wrap-input100 validate-input">
+            {{ form }}
+        </div>
+
+        <a href="#">Забыли пароль?</a>
+        <button type="submit">Войти</button>
+    </form>
+</div>

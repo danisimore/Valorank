@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Valorank</title>
+
+    <link href="{% static 'css/auth.css' %}" rel="stylesheet">
+
+</head>
+
+
+<body>
+
+<div class="container" id="container">
+
+    {% include 'include/auth/signin_form.html' %}
+
+    {% include 'include/auth/signin_overlay.html' %}
+
+</div>
+
+
+</body>
+</html>

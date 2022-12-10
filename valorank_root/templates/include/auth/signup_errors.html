@@ -1,0 +1,25 @@
+<div class="errors">
+    {% for error in form.errors.email %}
+    <ul>
+        <li>
+            {{ error }}
+        </li>
+    </ul>
+    {% endfor %}
+
+    {% for error in form.errors.password1 %}
+    <ul>
+        <li>
+            {{ error }}
+        </li>
+    </ul>
+    {% endfor %}
+
+    {% for error in form.errors.password2 %}
+    <ul>
+        <li>
+            {{ error }}
+        </li>
+    </ul>
+    {% endfor %}
+</div>

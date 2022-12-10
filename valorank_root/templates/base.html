@@ -1,6 +1,6 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
 
     {% block meta %}
@@ -19,6 +19,9 @@
 
     {% block add_css %}
     {% endblock  %}
+
+    {% block add_bootstrap %}
+    {% endblock %}
 
 </head>
 <body>
@@ -61,7 +64,12 @@
         </div>
 
         <div class="d-none d-lg-block">
-            <a href="#"><button type="button" class="custom-btn btn btn-danger">Вход / Регистрация</button></a>
+            {% if request.user.is_authenticated %}
+            <label style="padding-right: 10px">{{ request.user.email }}</label>
+            <button class="custom-btn btn btn-danger">Выйти</button>
+            {% else %}
+            <a href="{% url 'signin' %}"><button type="button" class="custom-btn btn btn-danger">Вход / Регистрация</button></a>
+            {% endif %}
         </div>
 
     </div>
@@ -81,6 +89,9 @@
 <!-- JAVASCRIPT FILES -->
 {% block js_files %}
 {% include 'include/base/js_files.html' %}
+{% endblock %}
+
+{% block add_js %}
 {% endblock %}
 
 </body>

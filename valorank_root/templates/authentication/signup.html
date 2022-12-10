@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Valorank</title>
+
+    <link href="{% static 'css/auth.css' %}" rel="stylesheet">
+
+</head>
+
+<body>
+<div class="container" id="container">
+
+    <div class="form-container sign-in-container">
+        <form action="{% url 'signup' %}" method="POST">
+            <h1 style="padding-bottom: 40px">Регистрация</h1>
+            {% csrf_token %}
+
+            {% include 'include/auth/signup_errors.html' %}
+
+            {% include 'include/auth/form_fields.html' %}
+
+            <button type="submit">Зарегистрироваться</button>
+        </form>
+    </div>
+
+    {% include 'include/auth/signup_overlay.html' %}
+
+</div>
+</body>
+</html>
