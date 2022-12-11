@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div style="padding-top: 143px; padding-bottom: 144px; padding-left: 570px">
+  <h4>Упс... Кажется эта ссылка недействительна :c</h4>
+  <p>Попробуйте авторизоваться еще раз!</p>
+  <a href="{% url 'signin' %}">Войти</a>
+</div>
+{% endblock %}
