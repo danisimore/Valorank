@@ -66,7 +66,7 @@
         <div class="d-none d-lg-block">
             {% if request.user.is_authenticated %}
             <label style="padding-right: 10px">{{ request.user.email }}</label>
-            <button class="custom-btn btn btn-danger">Выйти</button>
+            <a href="{% url 'logout' %}"><button class="custom-btn btn btn-danger">Выйти</button></a>
             {% else %}
             <a href="{% url 'signin' %}"><button type="button" class="custom-btn btn btn-danger">Вход / Регистрация</button></a>
             {% endif %}
