@@ -1,12 +1,17 @@
 from django.contrib.auth import get_user_model, password_validation, authenticate
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.auth.forms import (
+    AuthenticationForm,
+    UserCreationForm,
+    PasswordResetForm as DjangoPasswordResetForm,
+    SetPasswordForm as DjangoSetPasswordForm
+)
 from django.core.exceptions import ValidationError
-from django.shortcuts import redirect
 from django.utils.translation import gettext_lazy as _
 from django import forms
 
 from users.utils import send_email_for_verify
 
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
 class CreateUser(UserCreationForm):
     email = forms.CharField(
@@ -27,7 +32,6 @@ class CreateUser(UserCreationForm):
         strip=False,
         help_text=_("Enter the same password as before, for verification."),
     )
-
 
     def __init__(self, *args, **kwargs):
         super(CreateUser, self).__init__(*args, **kwargs)
@@ -54,7 +58,7 @@ class LoginForm(AuthenticationForm):
             )
 
             if self.user_cache is None:
-                  raise self.get_invalid_login_error()
+                raise self.get_invalid_login_error()
 
             if not self.user_cache.email_verify:
                 send_email_for_verify(self.request, self.user_cache)
@@ -90,3 +94,24 @@ class LoginForm(AuthenticationForm):
         "inactive": _("Эта учетная запись неактивна"),
     }
 
+
+class PasswordResetForm(DjangoPasswordResetForm):
+    email = forms.EmailField(
+        label=_(""),
+        max_length=254,
+        widget=forms.EmailInput(attrs={"placeholder": "Ваш Email"}),
+    )
+
+class SetPasswordForm(DjangoSetPasswordForm):
+
+    new_password1 = forms.CharField(
+        label=_("New password"),
+        widget=forms.PasswordInput(attrs={"autocomplete": "new-password", "placeholder": "Введите новый пароль"}),
+        strip=False,
+        help_text=password_validation.password_validators_help_text_html(),
+    )
+    new_password2 = forms.CharField(
+        label=_("New password confirmation"),
+        strip=False,
+        widget=forms.PasswordInput(attrs={"autocomplete": "new-password", "placeholder": "Повторите пароль"}),
+    )
