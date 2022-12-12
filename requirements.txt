@@ -1,6 +1,4 @@
 Django
-djangorestframework
-django-rest-swagger
 django-versatileimagefield
 Pillow
 python-dotenv

@@ -1,10 +1,7 @@
 from django.views.generic import ListView, TemplateView
-from rest_framework.generics import ListAPIView
-from rest_framework.response import Response
-from rest_framework.views import APIView
 
-from .models import Article, ArticleCategory
-from .serializers import ArticleSerializer, ArticleCategorySerializer, ArticleDetailSerializer
+from .models import Article
+
 
 
 all_articles = Article.objects.all()
@@ -32,27 +29,3 @@ class ArticleDetailView(TemplateView):
 
 
         return context
-
-class ArticlesAPIView(ListAPIView):
-    serializer_class = ArticleSerializer
-
-    def get_queryset(self):
-        articles = all_articles
-
-        return articles
-
-class ArticleCategoriesAPIView(ListAPIView):
-    serializer_class = ArticleCategorySerializer
-
-    def get_queryset(self):
-        categories = ArticleCategory.objects.all()
-
-        return categories
-
-class ArticleDetailAPIView(APIView):
-
-    def get(self, request, pk):
-        article = Article.objects.get(pk=pk)
-        serializer = ArticleDetailSerializer(article)
-
-        return Response(serializer.data)
