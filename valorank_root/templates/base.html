@@ -18,7 +18,7 @@
     {% endblock %}
 
     {% block add_css %}
-    {% endblock  %}
+    {% endblock %}
 
     {% block add_bootstrap %}
     {% endblock %}
@@ -42,7 +42,7 @@
             <ul class="navbar-nav mx-auto">
 
                 <li class="nav-item">
-                   {% block home_link %} <a class="nav-link active" href="{% url 'home' %}">Главная</a> {% endblock %}
+                    {% block home_link %} <a class="nav-link active" href="{% url 'home' %}">Главная</a> {% endblock %}
                 </li>
 
                 <li class="nav-item">
@@ -65,14 +65,28 @@
 
         <div class="d-none d-lg-block">
             {% if request.user.is_authenticated %}
-            <label style="padding-right: 10px">{{ request.user.email }}</label>
-            <a href="{% url 'logout' %}"><button class="custom-btn btn btn-danger">Выйти</button></a>
-            {% else %}
-            <a href="{% url 'signin' %}"><button type="button" class="custom-btn btn btn-danger">Вход / Регистрация</button></a>
-            {% endif %}
-        </div>
 
-    </div>
+            <div class="dropdown">
+                <label class="drop-label" style="padding-right: 10px">{{ request.user.email }}</label>
+                <div class="dropdown-content">
+                    <a href="#">Ссылка 1</a>
+                    <a href="#">Ссылка 2</a>
+                    <a href="#">Ссылка 3</a>
+                </div>
+            </div>
+
+
+                    <a href="{% url 'logout' %}">
+                        <button class="custom-btn btn btn-danger">Выйти</button>
+                    </a>
+                    {% else %}
+                    <a href="{% url 'signin' %}">
+                        <button type="button" class="custom-btn btn btn-danger">Вход / Регистрация</button>
+                    </a>
+                    {% endif %}
+                </div>
+
+            </div>
 </nav>
 {% endblock %}
 
