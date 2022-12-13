@@ -6,7 +6,7 @@ from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode
 
 
-def send_email_for_verify(request, user):
+def send_email_for_verify(request, user, template_name, email_to_send):
     current_site = get_current_site(request)
     context = {
         'user': user,
@@ -15,12 +15,12 @@ def send_email_for_verify(request, user):
         'token': token_generator.make_token(user),
     }
     message = render_to_string(
-        'authentication/verify_email.html',
+        template_name,
         context=context,
     )
     email = EmailMessage(
         'Verify email',
         message,
-        to=[user.email],
+        to=[email_to_send],
     )
     email.send()
