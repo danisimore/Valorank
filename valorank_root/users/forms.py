@@ -61,7 +61,7 @@ class LoginForm(AuthenticationForm):
                 raise self.get_invalid_login_error()
 
             if not self.user_cache.email_verify:
-                send_email_for_verify(self.request, self.user_cache)
+                send_email_for_verify(self.request, self.user_cache, 'authentication/verify_email.html')
                 raise ValidationError(
                     self.error_messages["unconfirmed_email"],
                     code="unconfirmed_email"
@@ -115,3 +115,8 @@ class SetPasswordForm(DjangoSetPasswordForm):
         strip=False,
         widget=forms.PasswordInput(attrs={"autocomplete": "new-password", "placeholder": "Повторите пароль"}),
     )
+
+
+
+
+

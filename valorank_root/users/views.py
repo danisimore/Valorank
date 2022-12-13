@@ -7,8 +7,10 @@ from django.contrib.auth.views import (
 )
 from django.core.exceptions import ValidationError
 from django.shortcuts import render, redirect
+from django.urls import reverse_lazy
 from django.utils.http import urlsafe_base64_decode
 from django.views import View
+from django.views.generic import FormView
 
 from .forms import LoginForm, CreateUser, PasswordResetForm, SetPasswordForm
 from .utils import send_email_for_verify
@@ -40,7 +42,7 @@ class SignUpView(View):
             email = form.cleaned_data.get('email')
             password = form.cleaned_data.get('password1')
             user = authenticate(email=email, password=password)
-            send_email_for_verify(request, user)
+            send_email_for_verify(request, user, 'authentication/verify_email.html', user.email)
             return redirect('confirm_email')
 
         context = {
@@ -51,8 +53,9 @@ class SignUpView(View):
 
 class EmailVerify(View):
     def get(self, request, uidb64, token):
-        user = self.get_user(uidb64)
 
+        user = self.get_user(uidb64)
+        print(user)
         if user is not None and token_generator.check_token(user, token):
             user.email_verify = True
             user.save()
@@ -78,6 +81,7 @@ class EmailVerify(View):
         return user
 
 
+
 class PasswordResetView(DjangoPasswordResetView):
     email_template_name = 'authentication/password_reset_email.html'
     template_name = 'authentication/password_reset_form.html'
@@ -87,3 +91,4 @@ class PasswordResetView(DjangoPasswordResetView):
 class PasswordResetConfirmView(DjangoPasswordResetConfirmView):
     template_name = 'authentication/password_reset_confirm.html'
     form_class = SetPasswordForm
+
