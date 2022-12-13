@@ -69,6 +69,7 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     email = models.EmailField(__(''), unique=True)
     email_verify = models.BooleanField(default=False)
+    temporary_email = models.EmailField(__(''), unique=True, blank=True, null=True)
     first_name = models.CharField(max_length=150, blank=True)
     last_name = models.CharField(max_length=150, blank=True)
     phone = models.CharField(max_length=150, blank=True)
