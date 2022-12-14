@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block home_link %} <a class="nav-link" href="{% url 'home' %}">Главная</a> {% endblock %}
+
+{% block content %}
+<h3 style="margin-left: 50px; margin-top: 20px">Смена почты</h3>
+<hr>
+
+<p style="margin-left: 50px;">
+    *Внимание, если вам не приходит письмо на почту, проверьте папку "Спам" или попробуйте снова через 5 минут.
+</p>
+
+<div style="padding-top: 110px; padding-bottom: 140px; padding-left: 50px">
+    <h6>Мы отправили вам письмо с инструкцией на электронную почту. Пожалуйста, проверьте свою почту.</h6>
+</div>
+
+{% endblock %}

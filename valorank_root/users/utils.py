@@ -7,6 +7,11 @@ from django.utils.http import urlsafe_base64_encode
 
 
 def send_email_for_verify(request, user, template_name, email_to_send):
+    """
+    template_name - имя шаблона с письмом
+    email_to_send - email, на который отправляется письмо (user.email)
+    """
+
     current_site = get_current_site(request)
     context = {
         'user': user,

@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block home_link %} <a class="nav-link" href="{% url 'home' %}">Главная</a> {% endblock %}
+
+{% block content %}
+<div style="padding-top: 143px; padding-bottom: 144px; padding-left: 50px">
+    <h4>При смене почты что-то пошло не так. Возможно, ссылка по которой вы пытаетесь перейти больше недействительна,
+        либо пользователь с такой почтой уже зарегистрирован.</h4>
+
+    <p>Пожалуйста, попробуйте снова</p>
+    <a href="{% url 'email_change' %}">Сменить почту</a>
+</div>
+{% endblock %}

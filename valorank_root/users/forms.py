@@ -11,6 +11,9 @@ from django import forms
 
 from users.utils import send_email_for_verify
 
+
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+'''                                               Login/Register Forms                                               '''
 ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
 class CreateUser(UserCreationForm):
@@ -61,7 +64,12 @@ class LoginForm(AuthenticationForm):
                 raise self.get_invalid_login_error()
 
             if not self.user_cache.email_verify:
-                send_email_for_verify(self.request, self.user_cache, 'authentication/verify_email.html')
+                send_email_for_verify(
+                    self.request,
+                    self.user_cache,
+                    'authentication/verify_email.html',
+                    self.user_cache.email
+                )
                 raise ValidationError(
                     self.error_messages["unconfirmed_email"],
                     code="unconfirmed_email"
@@ -95,6 +103,10 @@ class LoginForm(AuthenticationForm):
     }
 
 
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+'''                                               Password Reset Forms                                               '''
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
 class PasswordResetForm(DjangoPasswordResetForm):
     email = forms.EmailField(
         label=_(""),
@@ -102,8 +114,8 @@ class PasswordResetForm(DjangoPasswordResetForm):
         widget=forms.EmailInput(attrs={"placeholder": "Ваш Email"}),
     )
 
-class SetPasswordForm(DjangoSetPasswordForm):
 
+class SetPasswordForm(DjangoSetPasswordForm):
     new_password1 = forms.CharField(
         label=_("New password"),
         widget=forms.PasswordInput(attrs={"autocomplete": "new-password", "placeholder": "Введите новый пароль"}),
@@ -117,6 +129,24 @@ class SetPasswordForm(DjangoSetPasswordForm):
     )
 
 
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+'''                                                Email Change Forms                                                '''
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
+class EmailChangeForm(forms.Form):
+    email = forms.EmailField(
+        label=_(""),
+        max_length=254,
+        widget=forms.EmailInput(attrs={"placeholder": "Ваш Email"}),
+    )
 
+class TemporaryEmailForm(forms.Form):
+    temporary_email = forms.EmailField(
+        label=_(""),
+        max_length=254,
+        widget=forms.EmailInput(attrs={"placeholder": "Ваш Email"}),
+    )
 
+    class Meta:
+        model = get_user_model()
+        fields = ('temporary_email',)

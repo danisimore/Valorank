@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block home_link %} <a class="nav-link" href="{% url 'home' %}">Главная</a> {% endblock %}
+
+{% block content %}
+
+<h3 style="margin-left: 50px; margin-top: 20px">Смена почты</h3>
+<hr>
+
+<p style="margin-left: 50px;">
+    *Внимание, если вам не приходит письмо на почту, проверьте папку "Спам" или попробуйте снова через 5 минут.
+</p>
+
+<div style="padding-top: 80px; padding-bottom: 120px; padding-left: 50px">
+
+    <label style="padding-bottom: 10px">Введите вашу текущую почту</label>
+    <form action="{% url 'email_change' %}" method="POST">
+        {% csrf_token %}
+        {{ form.email }}
+        <button style="margin-left: 5px" type="submit" class="custom-btn btn btn-danger">Подтвердить</button>
+
+        <div style="padding-top: 10px">
+            {{ form.non_field_errors }}
+        </div>
+
+    </form>
+</div>
+{% endblock %}
