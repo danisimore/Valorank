@@ -1,17 +1,21 @@
 from django.contrib.auth import authenticate, get_user_model, login
 from django.contrib.auth.tokens import default_token_generator as token_generator
+
 from django.contrib.auth.views import (
     LoginView,
     PasswordResetView as DjangoPasswordResetView,
-    PasswordResetConfirmView as DjangoPasswordResetConfirmView
+    PasswordResetConfirmView as DjangoPasswordResetConfirmView,
+    PasswordChangeView as DjangoPasswordChangeView
 )
+
 from django.core.exceptions import ValidationError
 from django.shortcuts import render, redirect
+from django.urls import reverse_lazy
 from django.utils.http import urlsafe_base64_decode
 from django.views import View
 from django.views.generic import FormView
 
-from .forms import LoginForm, CreateUser, PasswordResetForm, SetPasswordForm, EmailChangeForm, TemporaryEmailForm
+from . import forms
 from .utils import send_email_for_verify
 
 
@@ -24,7 +28,7 @@ User = get_user_model()
 
 class SignInView(LoginView):
     template_name = 'authentication/signin.html'
-    form_class = LoginForm
+    form_class = forms.LoginForm
 
 
 class SignUpView(View):
@@ -32,12 +36,12 @@ class SignUpView(View):
 
     def get(self, request):
         context = {
-            'form': CreateUser()
+            'form': forms.CreateUser()
         }
         return render(request, self.template_name, context)
 
     def post(self, request):
-        form = CreateUser(request.POST)
+        form = forms.CreateUser(request.POST)
 
         if form.is_valid():
             form.save()
@@ -93,12 +97,12 @@ class EmailVerify(View):
 class PasswordResetView(DjangoPasswordResetView):
     email_template_name = 'authentication/password_reset/password_reset_email.html'
     template_name = 'authentication/password_reset/password_reset_form.html'
-    form_class = PasswordResetForm
+    form_class = forms.PasswordResetForm
 
 
 class PasswordResetConfirmView(DjangoPasswordResetConfirmView):
     template_name = 'authentication/password_reset/password_reset_confirm.html'
-    form_class = SetPasswordForm
+    form_class = forms.SetPasswordForm
 
 
 ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
@@ -106,7 +110,7 @@ class PasswordResetConfirmView(DjangoPasswordResetConfirmView):
 ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
 class EmailChangeView(FormView):
-    form_class = EmailChangeForm
+    form_class = forms.EmailChangeForm
     template_name = 'authentication/email_change/email_change.html'
 
     def form_valid(self, form):
@@ -125,7 +129,7 @@ class EmailChangeView(FormView):
             return render(self.request, 'authentication/email_change/email_change.html', {'form': form})
 
 class ChangeEmailConfirm(FormView):
-    form_class = TemporaryEmailForm
+    form_class = forms.TemporaryEmailForm
     template_name = 'authentication/email_change/email_change_confirm.html'
 
     def form_valid(self, form):
@@ -174,3 +178,13 @@ class NewEmailVerifyView(View):
         ):
             user = None
         return user
+
+
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+'''                                               Password Change View                                               '''
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+class PasswordChangeView(DjangoPasswordChangeView):
+    template_name = 'authentication/password_change/password_change_form.html'
+    success_url = reverse_lazy("password_change_done")
+    form_class = forms.PasswordChangeForm

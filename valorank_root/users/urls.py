@@ -71,5 +71,13 @@ urlpatterns = [
         'email_change/invalid_verify',
         TemplateView.as_view(template_name='authentication/email_change/invalid_new_email_verify.html'),
         name='invalid_new_email_verify'
+    ),
+
+    # password change urls
+    path('password_change/', views.PasswordChangeView.as_view(), name='password_change'),
+    path(
+        'password_change/done',
+        TemplateView.as_view(template_name='authentication/password_change/password_change_done.html'),
+        name='password_change_done'
     )
 ]

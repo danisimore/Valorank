@@ -150,3 +150,50 @@ class TemporaryEmailForm(forms.Form):
     class Meta:
         model = get_user_model()
         fields = ('temporary_email',)
+
+
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+'''                                                Password Change Form                                              '''
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+class PasswordChangeForm(SetPasswordForm):
+    new_password1 = forms.CharField(
+        label=_(""),
+        widget=forms.PasswordInput(attrs={"autocomplete": "new-password", "placeholder": "Введите новый пароль"}),
+        strip=False,
+        help_text=password_validation.password_validators_help_text_html(),
+    )
+    new_password2 = forms.CharField(
+        label=_(""),
+        strip=False,
+        widget=forms.PasswordInput(attrs={"autocomplete": "new-password", "placeholder": "Повторите новый пароль"}),
+    )
+
+    error_messages = {
+        **SetPasswordForm.error_messages,
+        "password_incorrect": _(
+            "Your old password was entered incorrectly. Please enter it again."
+        ),
+        "password_mismatch": _("The two password fields didn’t match."),
+    }
+    old_password = forms.CharField(
+        label=_(""),
+        strip=False,
+        widget=forms.PasswordInput(
+            attrs={"autocomplete": "current-password", "autofocus": True, "placeholder": "Введите свой текущий пароль"}
+        ),
+    )
+
+    field_order = ["old_password", "new_password1", "new_password2"]
+
+    def clean_old_password(self):
+        """
+        Validate that the old_password field is correct.
+        """
+        old_password = self.cleaned_data["old_password"]
+        if not self.user.check_password(old_password):
+            raise ValidationError(
+                self.error_messages["password_incorrect"],
+                code="password_incorrect",
+            )
+        return old_password
