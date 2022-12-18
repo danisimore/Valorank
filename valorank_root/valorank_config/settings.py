@@ -41,8 +41,6 @@ DJANGO_APPS = [
 ]
 
 THIRD_PARTY = [
-    'rest_framework',
-    'rest_framework_swagger',
     'ckeditor',
     'ckeditor_uploader',
 ]

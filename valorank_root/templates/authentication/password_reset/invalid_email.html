@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block home_link %} <a class="nav-link" href="{% url 'home' %}">Главная</a> {% endblock %}
+
+{% block content %}
+<div style="padding-top: 143px; padding-bottom: 144px; padding-left: 370px">
+  <h4>Упс... Кажется пользователя с такой почтой нет у нас в базе данных :c</h4>
+  <p>Попробуйте ввести другую почту или зарегистрироваться</p>
+  <a href="{% url 'password_reset' %}">Сброс пароля</a>
+</div>
+{% endblock %}

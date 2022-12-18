@@ -51,6 +51,11 @@ urlpatterns = [
         PasswordResetCompleteView.as_view(template_name='authentication/password_reset/password_reset_complete.html'),
         name="password_reset_complete",
     ),
+    path(
+        'invalid_email',
+        TemplateView.as_view(template_name='authentication/password_reset/invalid_email.html'),
+        name='invalid_email'
+    ),
 
     # email change urls
     path('email_change/', views.EmailChangeView.as_view(), name='email_change'),

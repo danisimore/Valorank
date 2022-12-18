@@ -1,3 +1,5 @@
+import re
+
 from django.contrib.auth import authenticate, get_user_model, login
 from django.contrib.auth.tokens import default_token_generator as token_generator
 
@@ -116,12 +118,37 @@ class EmailVerify(View):
 class PasswordResetView(DjangoPasswordResetView):
     """
     Представление для сброса пароля. Унаследовано от базового класса сброса пароля Django.
-    Переопределена форма и шаблоны.
+    Переопределена форма и шаблоны. Переопределен метод form_valid для проверки наличия
+    пользователя с указанной почтой.
     """
+
     email_template_name = 'authentication/password_reset/password_reset_email.html'
     template_name = 'authentication/password_reset/password_reset_form.html'
     form_class = forms.PasswordResetForm
 
+    def form_valid(self, form):
+        """
+        Регулярное выражение в form_email ищет введенный пользователем email.
+        Далее условие проверяет есть ли такая почта в БД. Если нет, перенаправляет
+        пользователя на страницу с ошибкой. Если есть, отправляет письмо для сброса пароля
+        """
+
+        form_email = re.findall('[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[a-zA-Z0-9]+', str(form))
+        if User.objects.filter(email=form_email[0]):
+            opts = {
+                "use_https": self.request.is_secure(),
+                "token_generator": self.token_generator,
+                "from_email": self.from_email,
+                "email_template_name": self.email_template_name,
+                "subject_template_name": self.subject_template_name,
+                "request": self.request,
+                "html_email_template_name": self.html_email_template_name,
+                "extra_email_context": self.extra_email_context,
+            }
+            form.save(**opts)
+            return super().form_valid(form)
+        else:
+            return redirect('invalid_email')
 
 class PasswordResetConfirmView(DjangoPasswordResetConfirmView):
     """
