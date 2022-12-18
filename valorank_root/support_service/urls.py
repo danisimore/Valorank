@@ -1,7 +1,7 @@
 from django.urls import path
 from django.views.generic import TemplateView
 
-from .views import SupportServiceFormView, SubmissionStatusView
+from .views import SupportServiceFormView
 
 urlpatterns = [
     path('', SupportServiceFormView.as_view(), name='support_service'),
