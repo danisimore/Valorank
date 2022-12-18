@@ -218,3 +218,5 @@ ENV/
 /valorank_root/static/rest_framework/
 /valorank_root/.env.dev
 /valorank_root/.env.dev.db
+/valorank_root/.env.prod
+/valorank_root/.env.prod.db
