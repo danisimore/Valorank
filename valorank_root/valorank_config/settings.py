@@ -1,23 +1,25 @@
 from pathlib import Path
 import os
+from dotenv import load_dotenv
 
 ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
+load_dotenv('.env.dev')
+load_dotenv('.env.dev.db')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-pml+_k56ijxw4*9de50k=je=-mnr+tnmf%eqx$%$&-x9_6oxcx'
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = bool(int(os.environ.get('DEBUG', default=1)))
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = str(os.environ.get('DJANGO_ALLOWED_HOSTS')).split()
 
 AUTH_USER_MODEL = 'users.User'
 LOGIN_REDIRECT_URL = 'home'
@@ -94,12 +96,12 @@ WSGI_APPLICATION = 'valorank_config.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'valorank',
-        'USER': 'danisimore',
-        'PASSWORD': 'danil583483',
-        'HOST': 'localhost',
-        'PORT': '',
+        'ENGINE': os.environ.get('POSTGRES', 'django.db.backends.sqlite3'),
+        'NAME': os.environ.get('POSTGRES_DB', os.path.join(BASE_DIR, 'db.sqlite3')),
+        'USER': os.environ.get('POSTGRES_USER', 'user'),
+        'PASSWORD': os.environ.get('POSTGRES_PASSWORD'),
+        'HOST': os.environ.get('POSTGRES_HOST', 'localhost'),
+        'PORT': os.environ.get('POSTGRES_PORT', '5432'),
     }
 }
 

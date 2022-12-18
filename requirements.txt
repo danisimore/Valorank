@@ -1,8 +1,0 @@
-Django
-django-versatileimagefield
-Pillow
-python-dotenv
-requests
-psycopg2-binary
-django-ckeditor
-

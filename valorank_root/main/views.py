@@ -1,3 +1,5 @@
+import os
+
 from django.db.models import Q
 from django.views.generic import ListView
 
@@ -13,7 +15,6 @@ class IndexListView(ListView):
     """
     Представление для рендера главной страницы. Выводит 5 последних статей и 3 бестселлера
     """
-
     template_name = 'index.html'
     model = Product
 
