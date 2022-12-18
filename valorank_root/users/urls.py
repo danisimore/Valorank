@@ -59,12 +59,7 @@ urlpatterns = [
         TemplateView.as_view(template_name='authentication/email_change/email_change_sent.html'),
         name='email_change_sent'
     ),
-    path(
-        'email_change/<uidb64>/<token>/',
-        views.ChangeEmailConfirmCheckUrl.as_view(),
-        name='email_change_confirm_check_url'
-    ),
-    path('email_change/confirm', views.ChangeEmailConfirm.as_view(), name='email_change_confirm'),
+    path('email_change/confirm/<uidb64>/<token>/', views.ChangeEmailConfirm.as_view(), name='email_change_confirm'),
     path('email_change/new_email/verify/<uidb64>/<token>/', views.NewEmailVerifyView.as_view(),
          name='new_email_verify'),
     path(

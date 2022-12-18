@@ -2,6 +2,16 @@
 
 {% block home_link %} <a class="nav-link" href="{% url 'home' %}">Главная</a> {% endblock %}
 
+
+
+{% block add_meta %}
+{% if not request.user.is_authenticated %}
+<meta http-equiv="refresh" content="0;URL={% url 'signin' %}"/>
+{% endif %}
+{% endblock %}
+
+
+
 {% block content %}
 
 <h3 style="margin-left: 50px; margin-top: 20px">Смена почты</h3>

@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
+{% if not request.user.is_authenticated %}
 <head>
     <meta charset="UTF-8">
     <title>Valorank</title>
@@ -23,4 +24,7 @@
 
 
 </body>
+{% else %}
+<meta http-equiv="refresh" content="0;URL={% url 'home' %}"/>
+{% endif %}
 </html>

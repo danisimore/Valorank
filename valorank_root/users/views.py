@@ -166,19 +166,26 @@ class EmailChangeView(FormView):
             return render(self.request, 'authentication/email_change/email_change.html', {'form': form})
 
 
-class ChangeEmailConfirmCheckUrl(View):
+
+class ChangeEmailConfirm(FormView):
     """
-    Это представление проверяет, совпадает ли url, по которому перешел пользователь,
-    с отправленным ему на почту путем получения из него uidb64, его расшифровки и проверки токена.
-    Аналогично EmailVerify, который описан выше.
-    Если совпадает, то происходит redirect на страницу смены почты.
+    Представление для рендера страницы с формой ввода новой почты.
+    Сначала идет проверка аналогично представлению EmailVerify. Если
+    данные из результата расшифровки uidb64 верны, а также совпадает токен,
+    то пользователь может вводить данные новой почты.
+    Данные новой почты записываются в поле temporary_email. Если это поле
+    уже имело данные у пользователя, то оно очищается перед записью.
+    Если форма валидна, то отправляется письмо на temporary_email
+    для его верификации
     """
 
-    def get(self, request, uidb64, token):
+    form_class = forms.TemporaryEmailForm
+    template_name = 'authentication/email_change/email_change_confirm.html'
 
-        user = self.get_user(uidb64)
-        if user is not None and token_generator.check_token(user, token):
-            return redirect('email_change_confirm')
+    def get(self, request, *args, **kwargs):
+        user = self.get_user(kwargs['uidb64'])
+        if user is not None and token_generator.check_token(user, kwargs['token']):
+            return render(request, 'authentication/email_change/email_change_confirm.html', {'form': self.form_class})
         else:
             return redirect('invalid_verify')
 
@@ -197,22 +204,6 @@ class ChangeEmailConfirmCheckUrl(View):
         ):
             user = None
         return user
-
-
-class ChangeEmailConfirm(FormView):
-    """
-    На url, за который отвечает это представление, пользователь попадает в случае
-    успешной проверки ChangeEmailConfirmCheckUrl. Форма содержит поля для ввода
-    новой почты. Если у пользователя уже есть temporary_email, то он удаляется,
-    а далее в это поле записывается только что введенное значение. В случае
-    отсутствия temporary_email, оно просто записывается ничего не удаляя.
-    Далее, на temporary_email пользователю отправляется письмо с верификацией и
-    происходит redirect на страницу с оповещением о том, что письмо было
-    отправлено.
-    """
-
-    form_class = forms.TemporaryEmailForm
-    template_name = 'authentication/email_change/email_change_confirm.html'
 
     def form_valid(self, form):
         if self.request.user.temporary_email:

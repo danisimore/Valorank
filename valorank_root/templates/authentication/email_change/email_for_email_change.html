@@ -2,6 +2,6 @@
 
 Приветствуем, {{ user.get_username }}!
 Пожалуйста, перейдите по ссылке, чтобы чтобы сменить свою электронную почту.
-http://{{ domain }}{% url 'email_change_confirm_check_url' uidb64=uid token=token %}
+http://{{ domain }}{% url 'email_change_confirm' uidb64=uid token=token %}
 
 {% endautoescape %}
