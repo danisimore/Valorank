@@ -21,6 +21,11 @@
 
         <div style="padding-top: 10px">
             {{ form.non_field_errors }}
+            {% for error in form.errors.email %}
+            <ul>
+                <li>{{ error }}</li>
+            </ul>
+            {% endfor %}
         </div>
 
     </form>

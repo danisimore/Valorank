@@ -17,6 +17,14 @@ from users.utils import send_email_for_verify
 ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
 class CreateUser(UserCreationForm):
+    """
+    Форма создания пользователя. Используется в представлении SignUpView.
+    Наследуется от базового класса Django.
+    Переопределены поля, для их отображения в необходимом виде; Значение help_texts
+    установленно в None. В классе мета указана модель пользователя, т.к.
+    пользователь был переопределен.
+    """
+
     email = forms.CharField(
         label=_(''),
         widget=forms.EmailInput(attrs={"placeholder": "Введите Email"})
@@ -48,6 +56,15 @@ class CreateUser(UserCreationForm):
 
 
 class LoginForm(AuthenticationForm):
+    """
+    Форма авторизации пользователя. Используется в представлении SignInView.
+    Унаследована от базового класса авторизации Django. Переопределены поля,
+    сообщения об ошибках, а также метод clean.
+    Метод clean переопределен для дополнительной проверки подтверждения почты.
+    Если почта не подтверждена, то поднимается ValidationError с сообщением
+    "unconfirmed_email", и пользователю отправляется письмо с подтверждением.
+    Авторизоваться не получится, пока почта не подтверждена.
+    """
 
     def clean(self):
         username = self.cleaned_data.get("username")
@@ -108,6 +125,7 @@ class LoginForm(AuthenticationForm):
 ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
 class PasswordResetForm(DjangoPasswordResetForm):
+    """Форма сброса пароля. Унаследована от базовой формы сброса пароля Django. Переопределено поле email"""
     email = forms.EmailField(
         label=_(""),
         max_length=254,
@@ -116,6 +134,11 @@ class PasswordResetForm(DjangoPasswordResetForm):
 
 
 class SetPasswordForm(DjangoSetPasswordForm):
+    """
+    Форма ввода нового пароля после сброса. Унаследована от базовой формы установки пароля Django.
+    Переопределены поля: new_password1, new_password2
+    """
+
     new_password1 = forms.CharField(
         label=_("New password"),
         widget=forms.PasswordInput(attrs={"autocomplete": "new-password", "placeholder": "Введите новый пароль"}),
@@ -134,6 +157,7 @@ class SetPasswordForm(DjangoSetPasswordForm):
 ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
 class EmailChangeForm(forms.Form):
+    """Форма для ввода своей почты при смене."""
     email = forms.EmailField(
         label=_(""),
         max_length=254,
@@ -141,6 +165,7 @@ class EmailChangeForm(forms.Form):
     )
 
 class TemporaryEmailForm(forms.Form):
+    """Форма для ввода новой почты при смене."""
     temporary_email = forms.EmailField(
         label=_(""),
         max_length=254,
@@ -157,6 +182,11 @@ class TemporaryEmailForm(forms.Form):
 ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
 class PasswordChangeForm(SetPasswordForm):
+    """
+    Форма для смены пароля. Унаследовано от базового класса установки пароля Django.
+    Добавлено поле old_password.
+    """
+
     new_password1 = forms.CharField(
         label=_(""),
         widget=forms.PasswordInput(attrs={"autocomplete": "new-password", "placeholder": "Введите новый пароль"}),

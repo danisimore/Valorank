@@ -30,6 +30,10 @@ class ArticleAdmin(admin.ModelAdmin):
     list_max_show_all = 100
 
     def get_image(self, obj):
+        """
+        Вывод изображения в админке
+        """
+
         if obj.image:
             return mark_safe(f'<img src="{obj.image.url}" width="50px"')
         else:

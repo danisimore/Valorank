@@ -2,7 +2,9 @@ from django import forms
 
 from .models import Request
 
+
 class RequestForm(forms.ModelForm):
+    """Форма запроса в службу поддержки"""
 
     class Meta:
         model = Request

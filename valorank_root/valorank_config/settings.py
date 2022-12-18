@@ -158,7 +158,4 @@ SITE_ID = 1
 
 CKEDITOR_UPLOAD_PATH = 'media/ckeditor/'
 
-REST_FRAMEWORK = {
-    'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
-}
 

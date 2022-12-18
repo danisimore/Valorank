@@ -10,6 +10,10 @@ from users.models import User
 
 
 class IndexListView(ListView):
+    """
+    Представление для рендера главной страницы. Выводит 5 последних статей и 3 бестселлера
+    """
+
     template_name = 'index.html'
     model = Product
 
@@ -21,6 +25,11 @@ class IndexListView(ListView):
         return context
 
 class AboutUsListView(ListView):
+    """
+    Представление для рендера страницы "О нас". Выводит 3 бустера по указанным
+    первичным ключам.
+    """
+
     template_name = 'about.html'
     model = User
 

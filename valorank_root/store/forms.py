@@ -4,6 +4,11 @@ from .models import Product
 
 
 class RankSelectionForm(forms.ModelForm):
+    """
+    Форма для выбора ранга пользователя и ранга, до которого
+    он желает забустить свой аккаунт
+    """
+
     class Meta:
         model = Product
         fields = ('base_rank', 'desired_rank')

@@ -7,6 +7,9 @@ from .models import Article
 all_articles = Article.objects.all()
 
 class ArticlesListView(ListView):
+    """
+    Представление для вывода всех статей
+    """
     template_name = 'articles.html'
     model = Article
 
@@ -18,6 +21,9 @@ class ArticlesListView(ListView):
         return context
 
 class ArticleDetailView(TemplateView):
+    """
+    Представление для вывода определенной статьи.
+    """
     template_name = 'article_detail.html'
 
     def get_context_data(self, **kwargs):

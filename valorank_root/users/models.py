@@ -5,6 +5,7 @@ from django.contrib.auth.validators import UnicodeUsernameValidator
 from django.db import models
 from django.utils.translation import gettext as __
 
+
 class UserManager(BaseUserManager):
     use_in_migrations = True
 
@@ -63,6 +64,7 @@ class EmployeeMailbox(models.Model):
     class Meta:
         verbose_name = 'Имя почтового ящика сотрудника'
         verbose_name_plural = 'Имена почтовых ящиков сотрудников'
+
 
 class User(AbstractBaseUser, PermissionsMixin):
     username_validator = UnicodeUsernameValidator()

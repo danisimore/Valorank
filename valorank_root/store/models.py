@@ -1,4 +1,5 @@
 from django.db import models
+from users.models import User
 
 ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
@@ -25,6 +26,10 @@ class DesiredRank(models.Model):
 
 
 class Product(models.Model):
+    """
+    :old_price: Указывать, если discount = True
+    """
+
     title = models.CharField(max_length=256, verbose_name='Название')
     base_rank = models.ForeignKey(BaseRank, on_delete=models.PROTECT)
     desired_rank = models.ForeignKey(DesiredRank, on_delete=models.PROTECT)
@@ -41,3 +46,16 @@ class Product(models.Model):
     class Meta:
         verbose_name = 'Товар'
         verbose_name_plural = 'Товары'
+
+
+class Order(models.Model):
+    product = models.OneToOneField(Product, on_delete=models.PROTECT, verbose_name='Продукт')
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+
+    def __int__(self):
+        return self.pk
+
+    class Meta:
+        verbose_name = 'Заказ'
+        verbose_name_plural = 'Заказы'

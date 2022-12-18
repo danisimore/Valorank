@@ -4,12 +4,9 @@ from django.views.generic import FormView, TemplateView
 from .forms import RequestForm
 
 
-class SubmissionStatusView(TemplateView):
-    template_name = 'submission_status.html'
-
-
-
 class SupportServiceFormView(FormView):
+    """Форма рендера страницы поддержки и отправки запроса"""
+
     template_name = 'support_service.html'
     form_class = RequestForm
 
