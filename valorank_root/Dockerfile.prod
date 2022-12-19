@@ -47,7 +47,7 @@ RUN chmod +x /home/app/web/entrypoint.prod.sh
 USER app
 
 # Enable when deployed to server
-# RUN mkdir $APP_HOME/media
-# RUN chmod 777 $APP_HOME/media
+ RUN mkdir $APP_HOME/media
+ RUN chmod 777 $APP_HOME/media
 
 ENTRYPOINT ["/home/app/web/entrypoint.prod.sh"]
