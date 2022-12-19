@@ -84,7 +84,7 @@ class LoginForm(AuthenticationForm):
                 send_email_for_verify(
                     self.request,
                     self.user_cache,
-                    'authentication/verify_email.html',
+                    'authentication/verify_email/verify_email.html',
                     self.user_cache.email
                 )
                 raise ValidationError(

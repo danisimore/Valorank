@@ -16,6 +16,7 @@ Including another URLconf
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
+from django.views.generic import TemplateView
 
 from . import settings
 
@@ -29,7 +30,7 @@ urlpatterns = [
     path('store/', include('store.urls')),
     path('user/', include('users.urls')),
     path('articles/', include('articles.urls')),
-    path('support/', include('support_service.urls'))
+    path('support/', include('support_service.urls')),
 ]
 
 if settings.DEBUG:
