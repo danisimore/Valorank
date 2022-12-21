@@ -28,6 +28,7 @@ class Article(models.Model):
     image = models.ImageField(upload_to='articles', verbose_name='Изображение')
     video = models.CharField(max_length=500, blank=True, verbose_name='Видео')
     category = models.ForeignKey(ArticleCategory, on_delete=models.CASCADE, blank=True, null=True)
+    is_update = models.BooleanField(default=False)
     creation_date = models.DateField(auto_now_add=True)
 
     def __str__(self):

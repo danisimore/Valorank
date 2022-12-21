@@ -15,8 +15,8 @@ class ArticlesListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['updates'] = Article.objects.filter(category=1)
-        context['information_and_articles'] = all_articles.exclude(category=1)
+        context['updates'] = Article.objects.filter(is_update=True)
+        context['information_and_articles'] = all_articles.exclude(is_update=True)
 
         return context
 

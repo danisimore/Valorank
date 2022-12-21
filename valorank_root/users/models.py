@@ -80,6 +80,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_employee = models.BooleanField(default=False)
     position = models.ForeignKey(Position, on_delete=models.PROTECT, blank=True, null=True)
     mailbox = models.ForeignKey(EmployeeMailbox, on_delete=models.CASCADE, null=True, blank=True)
+    is_best = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
 

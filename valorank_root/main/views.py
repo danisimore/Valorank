@@ -36,6 +36,6 @@ class AboutUsListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['object_list'] = User.objects.filter(Q(pk=1)|Q(pk=2)|Q(pk=3))
+        context['object_list'] = User.objects.filter(is_best=True)
 
         return context
