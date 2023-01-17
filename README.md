@@ -104,7 +104,7 @@ ____
 - Если миграции не применились, вы можете воспользоваться командой `docker-compose exec web python manage.py migrate`;
 - Далее вы можете создать суперюзера командой `docker-compose exec web python manage.py createsuperuser`;
 - Profit! Dev версия доступна по адресу `http://127.0.0.1:8000/`.
-#### *Запуск deploy версии*
+#### *Запуск prod версии*
 - Склонировать репозиторий
 - Перейти в директорию valorank_root
 - Создать файл `.env.prod` с переменными:
