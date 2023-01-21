@@ -112,7 +112,7 @@ ____
   SECRET_KEY=YOUR_SECRET_KEY
   DEBUG=0
   DJANGO_ALLOWED_HOSTS='localhost your_domen'
-  CSRF_TRUSTED_ORIGINS='http://localhost:1337 http://{your_domen.com}'
+  CSRF_TRUSTED_ORIGINS='http://127.0.0.1:1337 http://{your_domen.com}'
 
   EMAIL_HOST='smtp.yandex.ru'
   EMAIL_PORT=465
