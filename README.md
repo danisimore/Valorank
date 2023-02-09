@@ -77,7 +77,7 @@ ____
   POSTGRES_PORT=5432
   ```
 - Прейти в `valorank_root/valorank_config/settings.py`:
-  - Заккоментировать данные строки
+  - Закомментировать данные строки
     ```python
     # For deploy version
     # EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
