@@ -62,13 +62,13 @@ In order to clone this repository to your PC, you can use the command:
 - Clone the repository;
 - Go to the `valorank_root` directory;
 - Create a `.env.dev` file with variables:
-``
+```
   SECRET_KEY=YOUR_SECRET_KEY
   DEBUG=1
   DJANGO_ALLOWED_HOSTS='0.0.0.0 127.0.0.1'
   ```
 - Create a file `.env.dev.db` with variables:
-``
+```
   POSTGRES=django.db.backends.postgresql_psycopg2
   POSTGRES_DB=postgres
   POSTGRES_USER=postgres
