@@ -90,11 +90,11 @@ In order to clone this repository to your PC, you can use the command:
     # DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
     ``
 - Uncomment:
-``python
+```
     EMAIL_HOST = 'localhost'
     EMAIL_PORT = 1025
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-    ``
+```
 - Comment:
     ```python
     # CSRF_TRUSTED_ORIGINS = str(os.environ.get('CSRF_TRUSTED_ORIGINS')).split()
